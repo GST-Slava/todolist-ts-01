@@ -1,9 +1,8 @@
-import React from 'react';
+import React from "react";
 import './App.css';
-import {TodoList} from "./TodoList";
+import {Todolist} from "./Todolist";
 
-
-function App() {
+export const App = () => {
 
     const tasks1 = [
         { id: 1, title: "HTML&CSS", isDone: true },
@@ -16,15 +15,10 @@ function App() {
         { id: 3, title: "Yo", isDone: false }
     ]
 
-
     return (
         <div className="App">
-            <TodoList title={"What to learn"} tasks={tasks1}/>
-            <TodoList title={"Watch"}  tasks={tasks2}/>
+            <Todolist title='What to learn' tasks={tasks1}/>
+            <Todolist title='Songs' tasks={tasks2}/>
         </div>
-    );
+    )
 }
-
-
-
-export default App;
