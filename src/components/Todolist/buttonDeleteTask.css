@@ -1,0 +1,25 @@
+
+.buttonDeleteTask {
+
+    display: inline-block;
+    padding: 5px 7px;
+    font-size: 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #f7f8f8;
+    background-color: #8c8888;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 1px #565656;
+}
+
+.buttonDeleteTask:hover {background-color: #ce0707
+}
+
+.buttonDeleteTask:active {
+    background-color: #02b7f3;
+    box-shadow: 0 3px #666;
+    transform: translateY(1px);
+}
