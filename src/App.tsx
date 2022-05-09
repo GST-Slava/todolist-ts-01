@@ -7,7 +7,8 @@ export const App = () => {
         {id: 1, title: "HTML&CSS", isDone: true},
         {id: 2, title: "JS", isDone: true},
         {id: 3, title: "ReactJS", isDone: false},
-        {id: 4, title: "ReactJS", isDone: false}
+        {id: 4, title: "Rest API", isDone: false}
+        {id: 4, title: "GraphQL", isDone: false}
     ]*/
 
     let [tasks, setTasks] = useState([
@@ -22,21 +23,14 @@ export const App = () => {
         setTasks(tasks.filter((el) => el.id !== id))
     }
 
-    const changeFilter = (filterValue: string) => {
-        console.log(filterValue)
-    }
-
-    let colander = tasks.filter(el => !el.isDone)
-
     return (
         <div className="App">
             <Todolist
                 title='What to learn'
-                tasks={colander}
+                tasks={tasks}
                 removeTask={removeTask}
-                changeFilter={changeFilter}
+                // changeFilter={changeFilter}
             />
-
         </div>
-    )
+    );
 }
