@@ -1,0 +1,57 @@
+.noDoted {
+    list-style-type: none;
+}
+
+.buttonDeleteTask {
+    margin-left: -35px;
+    display: inline-block;
+    padding: 5px 7px 2px;
+    font-size: 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #f7f8f8;
+    background-color: #ef5017;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 1px #565656;
+}
+
+.buttonDeleteTask:hover {
+    background-color: #ce0707
+}
+
+.buttonDeleteTask:active {
+    background-color: #02b7f3;
+    box-shadow: 0 3px #666;
+    transform: translateY(1px);
+}
+
+
+.buttonAddTask {
+    display: inline-block;
+    padding: 4px 8px 2px;
+
+    margin-left: 2px;
+    font-size: 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #f7f8f8;
+    background-color: #0d7dee;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0 1px #565656;
+}
+
+.buttonAddTask:hover {
+    background-color: #07d212
+}
+
+.buttonAddTask:active {
+    background-color: #02b7f3;
+    box-shadow: 0 3px #666;
+    transform: translateY(1px);
+}
