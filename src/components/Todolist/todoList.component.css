@@ -1,3 +1,13 @@
+input {
+    /*width: 220px;*/
+    padding: 3px 3px;
+    margin: 5px 2px;
+    box-sizing: border-box;
+    border: 2px solid #2079ff;
+    border-radius: 4px;
+}
+
+
 .noDoted {
     list-style-type: none;
 }
@@ -54,4 +64,44 @@
     background-color: #02b7f3;
     box-shadow: 0 3px #666;
     transform: translateY(1px);
+}
+
+.buttonFilter {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #4d4f50;
+    border: none;
+    color: #f8773f;
+    text-align: center;
+    font-size: 10px;
+    padding: 6px;
+    width: 70px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 3px;
+}
+
+.buttonFilter span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.3s;
+}
+
+.buttonFilter span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.1s;
+}
+
+.buttonFilter:hover span {
+    padding-right: 12px;
+}
+
+.buttonFilter:hover span:after {
+    opacity: 1;
+    right: 0;
 }
