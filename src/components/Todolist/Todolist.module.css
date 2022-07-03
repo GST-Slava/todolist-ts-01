@@ -2,14 +2,30 @@
     border: red 2px solid;
 }
 
+.delButton {
+    margin-left: 3px;
+}
+
 .errorMessage {
     color: red;
 }
 
-.activeFilter {
+.active-filter {
     background-color: aqua;
 }
 
-.isDone {
+.allBtnClasses {
+    color: red;
+}
+
+.activeBtnClasses {
+    color: greenyellow;
+}
+
+.all {
+    color: gold;
+}
+
+.is-done {
     opacity: 0.5;
 }
