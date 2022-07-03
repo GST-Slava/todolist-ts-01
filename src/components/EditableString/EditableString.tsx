@@ -1,4 +1,5 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import {TextField} from "@material-ui/core";
 
 type EditableStringPropsType = {
     title: string
@@ -21,7 +22,8 @@ const EditableString: React.FC<EditableStringPropsType> = ({title, changeTitle})
     }
     return (
         editMode
-            ? <input
+            ? <TextField
+                variant={'standard'}
                 value={text}
                 onChange={onChangeSetText}
                 onKeyDown={onKeyDownChangeTitle}

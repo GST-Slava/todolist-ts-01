@@ -3,6 +3,8 @@ import './todoList.component.css';
 import {FilterValueType} from "../../App";
 import {AddItemForm} from "../AddItemForm/AddItemForm";
 import EditableString from "../EditableString/EditableString";
+import {Button, Checkbox, IconButton, List, ListItem} from "@material-ui/core";
+import { DeleteTwoTone} from "@material-ui/icons";
 
 export type TaskType = {
     id: string
@@ -33,18 +35,26 @@ export const Todolist = (props: TodoListPropsType) => {
             const changeTaskTitle = (taskTitle: string) => {
                 props.changeTaskTitle(t.id, taskTitle, props.todoListID)
             }
-            const taskClasses = t.isDone ? 'is-done' : '';
+            /*const taskClasses = t.isDone ? 'is-done' : '';*/
             return (
-                <li key={t.id}
-                    className={taskClasses}>
-                    <input
-                        type="checkbox"
+                <ListItem key={t.id}
+                style={{padding: '0px'}}
+                >
+                    <Checkbox
+                        size={'small'}
+                        color={'primary'}
                         onChange={changeStatus}
                         checked={t.isDone}
                     />
                     <EditableString changeTitle={changeTaskTitle} title={t.title}/>
-                    <button onClick={removeTask}>✖</button>
-                </li>
+                    <IconButton
+                        size={'small'}
+                        color={'secondary'}
+                        onClick={removeTask}>
+                        <DeleteTwoTone/>
+                    </IconButton>
+                    {/*<button onClick={removeTask}>✖</button>*/}
+                </ListItem>
             )
         })
         : <span>List is empty</span>
@@ -56,24 +66,42 @@ export const Todolist = (props: TodoListPropsType) => {
     const removeTodolist = () => props.removeTodoList(props.todoListID)
     const changeTodolistTitle = (todoListTitle: string) => props.changeTodolistTitle(todoListTitle, props.todoListID)
 
-    const allBtnClasses = props.filter === 'all' ? 'active-filter' : ''
-    const activeBtnClasses = props.filter === 'active' ? 'active-filter' : ''
-    const completedBtnClasses = props.filter === 'completed' ? 'active-filter' : ''
+    /* const allBtnClasses = props.filter === 'all' ? 'active-filter' : ''
+     const activeBtnClasses = props.filter === 'active' ? 'active-filter' : ''
+     const completedBtnClasses = props.filter === 'completed' ? 'active-filter' : ''*/
 
     return (
         <div>
             <h3>
                 <EditableString title={props.title} changeTitle={changeTodolistTitle}/>
-                <button className='delButton' onClick={removeTodolist}>Del</button>
+                <IconButton
+                    size={'small'}
+                    color={'secondary'}
+                    onClick={removeTodolist}>
+                    <DeleteTwoTone/>
+                </IconButton>
+                {/*<button className='delButton' onClick={removeTodolist}>Del</button>*/}
             </h3>
             <AddItemForm addItem={addTask}/>
-            <ul>
+            <List>
                 {tasksJSXElements}
-            </ul>
+            </List>
             <div>
-                <button className={allBtnClasses} onClick={changeFilter('all')}>All</button>
-                <button className={activeBtnClasses} onClick={changeFilter('active')}>Active</button>
-                <button className={completedBtnClasses} onClick={changeFilter('completed')}>Completed</button>
+                <Button
+                    size={'small'}
+                    color={props.filter === 'all' ? 'secondary' : 'primary'}
+                    variant={'contained'}
+                    onClick={changeFilter('all')}>All</Button>
+                <Button
+                    size={'small'}
+                    color={props.filter === 'active' ? 'secondary' : 'primary'}
+                    variant={'contained'}
+                    onClick={changeFilter('active')}>Active</Button>
+                <Button
+                    size={'small'}
+                    color={props.filter === 'completed' ? 'secondary' : 'primary'}
+                    variant={'contained'}
+                    onClick={changeFilter('completed')}>Completed</Button>
             </div>
         </div>
     );
