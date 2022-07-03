@@ -84,7 +84,7 @@ export const Todolist = (props: TodoListPropsType) => {
                 <button onClick={addTask}>+</button>
                 {error && <div style={{color: 'red', fontWeight: 'bold'}}>Title is required!</div>}
             </div>
-            '
+
             <ul>
                 {tasksJSXElements}
             </ul>
