@@ -7,7 +7,7 @@ import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography}
 import {Menu} from "@material-ui/icons";
 
 export type FilterValueType = 'all' | 'active' | 'completed';
-type TodoListType = {
+export type TodoListType = {
     id: string
     title: string
     filter: FilterValueType
@@ -80,7 +80,12 @@ export const App = () => {
     }
     const addTodolist = (title: string) => {
         const newTodolistID = v1()
-        setTodoLists([{id: newTodolistID, title, filter: 'all'}, ...todoLists])
+        const newTodoList: TodoListType = {
+            id: newTodolistID,
+            title: title,
+            filter: "all"
+        }
+        setTodoLists([ ...todoLists, newTodoList])
         setTasks({...tasks, [newTodolistID]: []})
     }
 
