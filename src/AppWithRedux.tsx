@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback} from "react";
 import './App.css';
 import {TaskType, Todolist} from "./components/Todolist/Todolist";
 import {AddItemForm} from "./components/AddItemForm/AddItemForm";
@@ -59,10 +59,10 @@ export const AppWithRedux = () => {
         let action = removeTodoListAC(todoListID)
         dispatch(action)
     }
-    const addTodolist = (title: string) => {
+    const addTodolist = useCallback((title: string) => {
         let action = addTodoListAC(title)
         dispatch(action)
-    }
+    }, [])
 
     const getTasksForRender = (todoList: TodoListType) => {
         let tasksForRender = tasks[todoList.id]
@@ -115,7 +115,7 @@ export const AppWithRedux = () => {
                         <Menu/>
                     </IconButton>
                     <Typography variant='h6'>
-                        Todolists
+                        TodoLists
                     </Typography>
                     <Button color='inherit' variant={'outlined'}>Login</Button>
                 </Toolbar>

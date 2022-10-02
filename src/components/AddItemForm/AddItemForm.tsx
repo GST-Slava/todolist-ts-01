@@ -6,10 +6,12 @@ type AddItemFormPropsType = {
     addItem: (title: string) => void
 }
 
-export const AddItemForm: React.FC<AddItemFormPropsType> = ({addItem}) => {
+export const AddItemForm = React.memo((props: AddItemFormPropsType) => {
 
     const [title, setTitle] = useState('')
     const [error, setError] = useState<boolean>(false)
+
+    console.log('AddItemForm called')
     const onChangeSetTitle = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
         error && setError(false)
@@ -18,12 +20,12 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = ({addItem}) => {
     const onKeyDownAddItem = (e: KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && onClickAddItem()
     const onClickAddItem = () => {
         const trimmedTitle = title.trim()
-        if (trimmedTitle) {
-            addItem(trimmedTitle)
+        if (trimmedTitle !== '') {
+            props.addItem(title);
+            setTitle('')
         } else {
             setError(true)
         }
-        setTitle('')
     }
 
     return (
@@ -49,5 +51,5 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = ({addItem}) => {
             {/*{error && <div style={{color: 'red', fontWeight: 'bold'}}>Title is required!</div>}*/}
         </div>
     );
-};
+});
 
