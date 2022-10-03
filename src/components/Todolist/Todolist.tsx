@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useCallback} from "react";
+import React, {ChangeEvent, memo, useCallback} from "react";
 import './todoList.component.css';
 import {FilterValueType} from "../../App";
 import {AddItemForm} from "../AddItemForm/AddItemForm";
@@ -26,15 +26,25 @@ type TodoListPropsType = {
     removeTodoList: (todoListID: string) => void
 }
 
-export const Todolist = (props: TodoListPropsType) => {
+export const Todolist = memo((props: TodoListPropsType) => {
+    console.log('TodoList')
+    let tasksForTodolist = props.tasks;
+    if (props.filter === 'active') {
+        tasksForTodolist = tasksForTodolist.filter(t => !t.isDone)
+    }
+    if (props.filter === 'completed') {
+        tasksForTodolist = tasksForTodolist.filter(t => t.isDone)
+    }
 
     const tasksJSXElements = props.tasks.length
-        ? props.tasks.map(t => {
+        ? tasksForTodolist.map(t => {
             const removeTask = () => props.removeTask(t.id, props.todoListID)
             const changeStatus = (e: ChangeEvent<HTMLInputElement>) => props.changeTaskStatus(t.id, e.currentTarget.checked, props.todoListID)
             const changeTaskTitle = (taskTitle: string) => {
                 props.changeTaskTitle(t.id, taskTitle, props.todoListID)
             }
+
+
             /*const taskClasses = t.isDone ? 'is-done' : '';*/
             return (
                 <ListItem key={t.id}
@@ -108,4 +118,4 @@ export const Todolist = (props: TodoListPropsType) => {
             </div>
         </div>
     );
-};
+});
