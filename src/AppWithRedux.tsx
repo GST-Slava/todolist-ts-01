@@ -36,9 +36,9 @@ export const AppWithRedux = () => {
         dispatch(action)
     }
 
-    const addTask = (title: string, todoListID: string) => {
+    const addTask = useCallback((title: string, todoListID: string) => {
         dispatch(addTaskAC(title, todoListID))
-    }
+    }, [])
 
     const changeTaskStatus = (tasksID: string, isDone: boolean, todoListID: string) => {
         dispatch(changeTaskStatusAC(tasksID, isDone, todoListID))
@@ -62,7 +62,7 @@ export const AppWithRedux = () => {
     const addTodolist = useCallback((title: string) => {
         let action = addTodoListAC(title)
         dispatch(action)
-    }, [])
+    }, [dispatch])
 
     const getTasksForRender = (todoList: TodoListType) => {
         let tasksForRender = tasks[todoList.id]

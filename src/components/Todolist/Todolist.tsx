@@ -1,10 +1,10 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, useCallback} from "react";
 import './todoList.component.css';
 import {FilterValueType} from "../../App";
 import {AddItemForm} from "../AddItemForm/AddItemForm";
 import EditableString from "../EditableString/EditableString";
 import {Button, Checkbox, IconButton, List, ListItem} from "@material-ui/core";
-import { DeleteTwoTone} from "@material-ui/icons";
+import {DeleteTwoTone} from "@material-ui/icons";
 
 export type TaskType = {
     id: string
@@ -38,7 +38,7 @@ export const Todolist = (props: TodoListPropsType) => {
             /*const taskClasses = t.isDone ? 'is-done' : '';*/
             return (
                 <ListItem key={t.id}
-                style={{padding: '0px'}}
+                          style={{padding: '0px'}}
                 >
                     <Checkbox
                         size={'small'}
@@ -62,7 +62,10 @@ export const Todolist = (props: TodoListPropsType) => {
     const changeFilter = (filter: FilterValueType) => {
         return () => props.changeTodoListFilter(filter, props.todoListID)
     }
-    const addTask = (title: string) => props.addTask(title, props.todoListID)
+    const addTask = useCallback((title: string) => {
+        props.addTask(title, props.todoListID)
+    }, [props.todoListID, props.addTask])
+
     const removeTodolist = () => props.removeTodoList(props.todoListID)
     const changeTodolistTitle = (todoListTitle: string) => props.changeTodolistTitle(todoListTitle, props.todoListID)
 
