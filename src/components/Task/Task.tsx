@@ -17,7 +17,7 @@ export const Task = memo(({
                               changeTaskStatus,
                               changeTaskTitle
                           }: TaskPropsType) => {
-
+    console.log('Task')
     const onClickHandler = () => removeTask(task.id)
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         changeTaskStatus(task.id, e.currentTarget.checked);
