@@ -13,7 +13,7 @@ const Template: ComponentStory<typeof EditableString> = (args) => <EditableStrin
 
 export const EditableStringExample = Template.bind({});
 EditableStringExample.args = {
-
+    title: "abcd12345",
     changeTitle: action('Value EditableString changed ')
 };
 
