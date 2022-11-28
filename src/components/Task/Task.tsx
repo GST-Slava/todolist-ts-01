@@ -2,12 +2,12 @@ import React, {ChangeEvent, memo} from 'react';
 import {Checkbox, IconButton, ListItem} from "@material-ui/core";
 import EditableString from "../EditableString/EditableString";
 import {DeleteTwoTone} from "@material-ui/icons";
-import {TaskType} from "../Todolist/Todolist";
+import {TaskStatuses, TaskType} from "../../api/todolist-api";
 
 type TaskPropsType = {
     task: TaskType
     removeTask: (task: string) => void
-    changeTaskStatus: (taskId: string, status: boolean) => void
+    changeTaskStatus: (taskId: string, status: TaskStatuses) => void
     changeTaskTitle: (taskId: string, title: string) => void
 }
 
@@ -20,7 +20,7 @@ export const Task = memo(({
     console.log('Task')
     const onClickHandler = () => removeTask(task.id)
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        changeTaskStatus(task.id, e.currentTarget.checked);
+        changeTaskStatus(task.id, TaskStatuses.Completed);//замена  e.currentTarget.checked
     }
     const onTitleChangeHandler = (taskTitle: string) => {
         changeTaskTitle(task.id, taskTitle);
@@ -34,7 +34,7 @@ export const Task = memo(({
                 size={'small'}
                 color={'primary'}
                 onChange={onChangeHandler}
-                checked={task.isDone}
+                checked={task.status === TaskStatuses.Completed}
             />
             <EditableString changeTitle={onTitleChangeHandler} title={task.title}/>
             <IconButton
