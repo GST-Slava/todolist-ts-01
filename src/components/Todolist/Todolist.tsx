@@ -36,7 +36,6 @@ export const Todolist = memo(({
                                   removeTodoList,
 
                               }: TodoListPropsType) => {
-    console.log('TodoList')
     let tasksForTodolist = tasks;
     if (filter === 'active') {
         tasksForTodolist = tasksForTodolist.filter(t => t.status === TaskStatuses.New)
@@ -79,13 +78,13 @@ export const Todolist = memo(({
             <AddItemForm addItem={addTask1}/>
             <List>
                 {
-                    tasksForTodolist.map(t => {
-                        return <Task
-                            key={t.id}
-                            task={t}
-                            removeTask={removeTask1}
-                            changeTaskStatus={changeTaskStatus1}
-                            changeTaskTitle={changeTaskTitle1}/>
+                   tasksForTodolist.map(t => {
+                        return <Task key={t.id}
+                                     task={t}
+                                     todolistId={todoListID}
+                                     removeTask={removeTask1}
+                                     changeTaskStatus={changeTaskStatus1}
+                                     changeTaskTitle={changeTaskTitle1}/>
                     })
                 }
             </List>
