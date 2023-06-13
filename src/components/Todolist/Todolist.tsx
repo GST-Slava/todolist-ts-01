@@ -1,4 +1,4 @@
-import React, {memo, useCallback} from "react";
+import React, {memo, useCallback, useEffect} from "react";
 import './todoList.component.css';
 import {AddItemForm} from "../AddItemForm/AddItemForm";
 import EditableString from "../EditableString/EditableString";
@@ -7,6 +7,8 @@ import {DeleteTwoTone} from "@material-ui/icons";
 import {Task} from "../Task/Task";
 import {TaskStatuses, TaskType} from "../../api/todolist-api";
 import {FilterValuesType} from "../../state/todolists-reducer";
+import {useDispatch} from "react-redux";
+import {fetchTasksTC} from "../../state/tasks-reducer";
 
 type TodoListPropsType = {
     todoListID: string
@@ -36,6 +38,13 @@ export const Todolist = memo(({
                                   removeTodoList,
 
                               }: TodoListPropsType) => {
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(fetchTasksTC(todoListID))
+    }, [])
+
     let tasksForTodolist = tasks;
     if (filter === 'active') {
         tasksForTodolist = tasksForTodolist.filter(t => t.status === TaskStatuses.New)
@@ -78,7 +87,7 @@ export const Todolist = memo(({
             <AddItemForm addItem={addTask1}/>
             <List>
                 {
-                   tasksForTodolist.map(t => {
+                    tasksForTodolist.map(t => {
                         return <Task key={t.id}
                                      task={t}
                                      todolistId={todoListID}

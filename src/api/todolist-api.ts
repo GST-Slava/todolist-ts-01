@@ -68,7 +68,7 @@ export type TaskType = {
     priority: TaskPriorities
 }
 
-type UpdateTaskModelType = {
+export type UpdateTaskModelType = {
     title: string
     description: string
     completed: boolean

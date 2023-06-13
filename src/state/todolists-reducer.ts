@@ -91,10 +91,21 @@ export const setTodolistsAC = (todos: TodoType[]) => {
 
 export type SetTodosAT = ReturnType<typeof setTodolistsAC>
 
-export const fetchTodosThunk = (dispatch: Dispatch) => {
+export const fetchTodosTC = () => (dispatch: Dispatch) => {
     TodolistAPI.getTodoLists()
         .then((res) => {
             dispatch(setTodolistsAC(res.data))
         })
 }
+
+/*export const fetchTodosTC = () => {
+    return (dispatch: Dispatch) => {
+        TodolistAPI.getTodoLists()
+            .then((res) => {
+                dispatch(setTodolistsAC(res.data))
+            })
+    }
+}*/
+
+
 
